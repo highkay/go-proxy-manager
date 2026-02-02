@@ -21,6 +21,9 @@ FROM alpine:latest
 
 WORKDIR /app
 
+# Install dependencies
+RUN apk --no-cache add ca-certificates tzdata
+
 # Copy binary and default config
 COPY --from=builder /app/gpm .
 COPY --from=builder /app/configs/config.yaml ./configs/config.yaml

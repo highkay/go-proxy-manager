@@ -26,7 +26,7 @@ func (s *Server) Start() error {
 	mux.HandleFunc("GET /api/v1/proxies", s.handleGetProxies)
 	mux.HandleFunc("GET /health", s.handleHealth)
 
-	addr := fmt.Sprintf(":%d", s.port)
+	addr := fmt.Sprintf("0.0.0.0:%d", s.port)
 	return http.ListenAndServe(addr, mux)
 }
 
