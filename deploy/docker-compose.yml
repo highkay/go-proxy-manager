@@ -9,6 +9,7 @@ services:
       - "8080:8080"
     volumes:
       - ../configs/config.yaml:/app/configs/config.yaml
+      - ./data:/app/data
     restart: always
     logging:
       driver: "json-file"

@@ -2,6 +2,7 @@ app:
   port: 8080
   log_level: "info"
   thread_count: 50
+  cache_file: "data/proxies.json"
 
 validation:
   target_urls:

@@ -12,6 +12,7 @@ type AppConfig struct {
 	Port        int    `yaml:"port"`
 	LogLevel    string `yaml:"log_level"`
 	ThreadCount int    `yaml:"thread_count"`
+	CacheFile   string `yaml:"cache_file"`
 }
 
 type ValidationConfig struct {
@@ -45,6 +46,9 @@ func LoadConfig(path string) (*Config, error) {
 	}
 	if cfg.App.ThreadCount == 0 {
 		cfg.App.ThreadCount = 50
+	}
+	if cfg.App.CacheFile == "" {
+		cfg.App.CacheFile = "data/proxies.json"
 	}
 	if cfg.Validation.Timeout == 0 {
 		cfg.Validation.Timeout = 10 * time.Second

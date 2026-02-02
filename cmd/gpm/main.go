@@ -60,5 +60,6 @@ func main() {
 		slog.Info("context cancelled, shutting down")
 	}
 
+	m.Stop()
 	slog.Info("shutdown complete")
 }

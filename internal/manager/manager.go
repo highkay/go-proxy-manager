@@ -29,6 +29,16 @@ func NewManager(cfg *config.Config, s *store.Store) *Manager {
 }
 
 func (m *Manager) Start(ctx context.Context) {
+	// 0. Load cache
+	if err := m.store.Load(m.cfg.App.CacheFile); err != nil {
+		slog.Error("failed to load cache", "error", err)
+	} else {
+		count := len(m.store.GetAll())
+		if count > 0 {
+			slog.Info("loaded proxies from cache", "count", count)
+		}
+	}
+
 	// 1. Start fetching for each source
 	for _, src := range m.cfg.Sources {
 		go m.fetchLoop(ctx, src)
@@ -36,6 +46,14 @@ func (m *Manager) Start(ctx context.Context) {
 
 	// 2. Start periodic validation of existing proxies
 	go m.checkLoop(ctx)
+}
+
+func (m *Manager) Stop() {
+	if err := m.store.Save(m.cfg.App.CacheFile); err != nil {
+		slog.Error("failed to save cache", "error", err)
+	} else {
+		slog.Info("saved cache to file", "path", m.cfg.App.CacheFile)
+	}
 }
 
 func (m *Manager) fetchLoop(ctx context.Context, source model.Source) {
