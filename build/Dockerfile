@@ -3,6 +3,9 @@ FROM golang:1.24-alpine AS builder
 
 WORKDIR /app
 
+# Set Go proxy
+ENV GOPROXY=https://goproxy.cn,direct
+
 # Copy go mod and sum files
 COPY go.mod go.sum ./
 RUN go mod download
