@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  gpm:
+    build:
+      context: ..
+      dockerfile: build/Dockerfile
+    ports:
+      - "8080:8080"
+    volumes:
+      - ../configs/config.yaml:/app/configs/config.yaml
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"

@@ -1,0 +1,34 @@
+# Binaries
+/gpm
+/gpm.exe
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Logs
+*.log
+logs/
+
+# Data dumps
+*.json
+!configs/*.json
+
+# Temporary scripts
+test_*.go
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+docker-compose.override.yml
+
+# Vendor
+vendor/

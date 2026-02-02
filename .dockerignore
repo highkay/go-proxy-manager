@@ -1,0 +1,27 @@
+# Git
+.git
+.gitignore
+.editorconfig
+
+# Build artifacts
+build/
+deploy/
+gpm
+gpm.exe
+*.log
+*.json
+
+# IDEs
+.idea
+.vscode
+*.swp
+
+# Docker
+docker-compose.yml
+Dockerfile
+.dockerignore
+
+# Misc
+AGENTS.md
+Makefile
+test_regex.go

@@ -1,0 +1,27 @@
+app:
+  port: 8080
+  log_level: "info"
+  thread_count: 50
+
+validation:
+  target_urls:
+    - "https://stock.finance.sina.com.cn/stock/go.php/vReport_Show/kind/lastest/rptid/823338417199/index.phtml"
+  timeout: 10s
+  interval: 180s
+
+sources:
+  - url: "https://raw.githubusercontent.com/r00tee/Proxy-List/refs/heads/main/Https.txt"
+    type: "text"
+    interval: 3600s
+  - url: "https://raw.githubusercontent.com/ClearProxy/checked-proxy-list/refs/heads/main/http/raw/all.txt"
+    type: "text"
+    interval: 3600s
+  - url: "https://raw.githubusercontent.com/TheSpeedX/PROXY-List/master/http.txt"
+    type: "text"
+    interval: 3600s
+  - url: "https://raw.githubusercontent.com/dpangestuw/Free-Proxy/refs/heads/main/http_proxies.txt"
+    type: "text"
+    interval: 3600s
+  - url: "https://cdn.jsdelivr.net/gh/proxifly/free-proxy-list@main/proxies/protocols/http/data.txt"
+    type: "text"
+    interval: 3600s
