@@ -11,6 +11,7 @@ GPM 是一个用 Go 语言编写的轻量级、高性能代理池管理工具。
 - **并发验证**: 使用高性能协程池 (Worker Pool) 进行代理验证。
 - **自动排序**: 返回的代理列表按延迟 (Latency) 自动升序排列。
 - **健康监控**: 定期重新验证已存储的代理，自动剔除失效代理。
+- **持久化**: 停机时自动保存有效代理至磁盘，重启后立即加载。
 - **结构化日志**: 使用 `log/slog` 输出 JSON 格式日志，易于监控集成。
 - **容器化**: 支持 Docker 和 Docker Compose 一键部署。
 
@@ -30,6 +31,7 @@ app:
   port: 8080           # 服务端口
   log_level: "info"    # 日志级别
   thread_count: 50     # 验证并发数
+  cache_file: "data/proxies.json" # 代理缓存文件路径
 
 validation:
   target_urls:         # 用于验证代理有效性的目标 URL
@@ -56,6 +58,8 @@ make run
 ```
 
 #### 使用 Docker
+
+`deploy/docker-compose.yml` 已经配置了 `data/` 目录的挂载，确保代理数据在重启后保留。
 
 ```bash
 # 构建并启动容器

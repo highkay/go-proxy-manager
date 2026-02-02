@@ -11,6 +11,7 @@ GPM is a lightweight, high-performance proxy pool manager written in Go. It aggr
 - **Concurrent validation**: High-performance worker pool for proxy checking.
 - **Automatic sorting**: Proxies are returned sorted by latency.
 - **Health monitoring**: Periodic re-validation of stored proxies.
+- **Persistence**: Save valid proxies to disk on shutdown and reload on restart.
 - **Structured logging**: JSON logs using `log/slog`.
 - **Containerized**: Docker and Docker Compose ready.
 
@@ -30,6 +31,7 @@ app:
   port: 8080
   log_level: "info"
   thread_count: 50
+  cache_file: "data/proxies.json" # Path to store proxy cache
 
 validation:
   target_urls:
@@ -56,6 +58,8 @@ make run
 ```
 
 #### Using Docker
+
+The `deploy/docker-compose.yml` includes a volume mount for `data/` to ensure proxies are persisted across restarts.
 
 ```bash
 # Build and start the container
