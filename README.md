@@ -55,6 +55,12 @@ make build
 
 # Run the application
 make run
+
+# Build and start Docker container (forces rebuild)
+make docker-up
+
+# Stop Docker container
+make docker-down
 ```
 
 #### Using Docker
@@ -63,7 +69,7 @@ The `deploy/docker-compose.yml` includes a volume mount for `data/` to ensure pr
 
 ```bash
 # Build and start the container
-docker-compose -f deploy/docker-compose.yml up -d
+docker compose -f deploy/docker-compose.yml up -d --build
 ```
 
 ## API Reference

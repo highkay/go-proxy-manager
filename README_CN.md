@@ -55,6 +55,12 @@ make build
 
 # 运行应用
 make run
+
+# 构建并启动 Docker 容器 (强制重新构建)
+make docker-up
+
+# 停止 Docker 容器
+make docker-down
 ```
 
 #### 使用 Docker
@@ -63,7 +69,7 @@ make run
 
 ```bash
 # 构建并启动容器
-docker-compose -f deploy/docker-compose.yml up -d
+docker compose -f deploy/docker-compose.yml up -d --build
 ```
 
 ## API 接口文档
