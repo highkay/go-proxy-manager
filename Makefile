@@ -1,4 +1,4 @@
-.PHONY: build run test docker-build docker-up clean
+.PHONY: build run test docker-build docker-up docker-down clean
 
 BINARY_NAME=gpm
 
@@ -12,10 +12,13 @@ test:
 	go test ./...
 
 docker-build:
-	docker build -t $(BINARY_NAME):latest -f build/Dockerfile .
+	docker compose -f deploy/docker-compose.yml build --no-cache
 
 docker-up:
-	docker-compose -f deploy/docker-compose.yml up -d
+	docker compose -f deploy/docker-compose.yml up -d --build
+
+docker-down:
+	docker compose -f deploy/docker-compose.yml down
 
 clean:
 	rm -f $(BINARY_NAME)
